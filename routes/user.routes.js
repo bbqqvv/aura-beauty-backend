@@ -19,5 +19,11 @@ router.get('/confirmEmail/:token', userController.confirmEmail);
 router.put('/update-user/:id', userController.updateUser);
 // register or login with google
 router.post("/register/:token", userController.signUpWithProvider);
+// get all users
+router.get("/all", userController.getAllUsers);
+// delete user
+router.delete("/:id", userController.deleteUser);
+// admin add user
+router.post("/admin/add", userController.adminAddUser);
 
 module.exports = router;
