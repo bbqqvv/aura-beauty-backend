@@ -53,10 +53,46 @@ exports.addOrder = async (req, res, next) => {
 // get Orders
 exports.getOrders = async (req, res, next) => {
   try {
-    const orderItems = await Order.find({}).populate('user');
+    const { page, limit, searchTerm } = req.query || {};
+    const pages = Number(page) || 1;
+    const limits = Number(limit) || 20;
+    const skip = (pages - 1) * limits;
+
+    let queryObject = {};
+    if (searchTerm) {
+      queryObject = {
+        $or: [
+          { name: { $regex: searchTerm, $options: "i" } },
+          { email: { $regex: searchTerm, $options: "i" } },
+          { _id: mongoose.Types.ObjectId.isValid(searchTerm) ? searchTerm : undefined }
+        ].filter(condition => condition._id !== undefined || !condition._id)
+      };
+      
+      // Fix for ID search if valid
+      if (mongoose.Types.ObjectId.isValid(searchTerm)) {
+        queryObject.$or = [{ _id: searchTerm }];
+      } else {
+        queryObject.$or = [
+          { name: { $regex: searchTerm, $options: "i" } },
+          { email: { $regex: searchTerm, $options: "i" } }
+        ];
+      }
+    }
+
+    const orderItems = await Order.find(queryObject)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limits)
+      .populate('user');
+    
+    const total = await Order.countDocuments(queryObject);
+
     res.status(200).json({
       success: true,
       data: orderItems,
+      total,
+      page: pages,
+      limit: limits
     });
   }
   catch (error) {

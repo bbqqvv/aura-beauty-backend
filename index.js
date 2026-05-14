@@ -21,6 +21,7 @@ const reviewRoutes = require("./routes/review.routes");
 const adminRoutes = require("./routes/admin.routes");
 const dashboardRoutes = require("./routes/dashboard.routes");
 const cloudinaryRoutes = require("./routes/cloudinary.routes");
+const blogRoutes = require("./routes/blog.routes");
 
 // middleware
 app.use(cors());
@@ -43,6 +44,7 @@ app.use("/api/review", reviewRoutes);
 app.use("/api/cloudinary", cloudinaryRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/blog", blogRoutes);
 
 // root route
 app.get("/", (req, res) => res.send("Apps worked successfully"));

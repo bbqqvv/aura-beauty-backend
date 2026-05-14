@@ -35,9 +35,32 @@ exports.addAllProductService = async (data) => {
 };
 
 // get product data
-exports.getAllProductsService = async () => {
-  const products = await Product.find({}).populate("reviews");
-  return products;
+exports.getAllProductsService = async (query) => {
+  const { page, limit, searchTerm } = query || {};
+  const pages = Number(page) || 1;
+  const limits = Number(limit) || 20;
+  const skip = (pages - 1) * limits;
+
+  let queryObject = {};
+  if (searchTerm) {
+    queryObject = {
+      $or: [
+        { title: { $regex: searchTerm, $options: "i" } },
+        { description: { $regex: searchTerm, $options: "i" } },
+        { sku: { $regex: searchTerm, $options: "i" } }
+      ]
+    };
+  }
+
+  const products = await Product.find(queryObject)
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limits)
+    .populate("reviews");
+  
+  const total = await Product.countDocuments(queryObject);
+
+  return { products, total, page: pages, limit: limits };
 };
 
 // get type of product service

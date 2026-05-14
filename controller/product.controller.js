@@ -51,10 +51,13 @@ module.exports.addAllProducts = async (req,res,next) => {
 // get all products
 exports.getAllProducts = async (req,res,next) => {
   try {
-    const result = await productServices.getAllProductsService();
+    const result = await productServices.getAllProductsService(req.query);
     res.status(200).json({
       success:true,
-      data:result,
+      data:result.products,
+      total: result.total,
+      page: result.page,
+      limit: result.limit
     })
   } catch (error) {
     next(error)

@@ -349,10 +349,35 @@ exports.signUpWithProvider = async (req, res,next) => {
 // get all users
 exports.getAllUsers = async (req, res, next) => {
   try {
-    const users = await User.find({}).sort({ createdAt: -1 });
+    const { page, limit, searchTerm } = req.query || {};
+    const pages = Number(page) || 1;
+    const limits = Number(limit) || 20;
+    const skip = (pages - 1) * limits;
+
+    let queryObject = {};
+    if (searchTerm) {
+      queryObject = {
+        $or: [
+          { name: { $regex: searchTerm, $options: "i" } },
+          { email: { $regex: searchTerm, $options: "i" } },
+          { phone: { $regex: searchTerm, $options: "i" } }
+        ]
+      };
+    }
+
+    const users = await User.find(queryObject)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limits);
+    
+    const total = await User.countDocuments(queryObject);
+
     res.status(200).json({
       status: "success",
       data: users,
+      total,
+      page: pages,
+      limit: limits
     });
   } catch (error) {
     next(error)
