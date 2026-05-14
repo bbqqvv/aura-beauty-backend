@@ -29,27 +29,35 @@ const adminData = require('./utils/admin');
 connectDB();
 const importData = async () => {
   try {
+    try { await Brand.collection.dropIndexes(); } catch(e){}
     await Brand.deleteMany();
     await Brand.insertMany(brandData);
 
+    try { await Category.collection.dropIndexes(); } catch(e){}
     await Category.deleteMany();
     await Category.insertMany(categoryData);
 
+    try { await Products.collection.dropIndexes(); } catch(e){}
     await Products.deleteMany();
     await Products.insertMany(productsData);
 
+    try { await Coupon.collection.dropIndexes(); } catch(e){}
     await Coupon.deleteMany();
     await Coupon.insertMany(couponData);
     
+    try { await Order.collection.dropIndexes(); } catch(e){}
     await Order.deleteMany();
     await Order.insertMany(orderData);
     
+    try { await User.collection.dropIndexes(); } catch(e){}
     await User.deleteMany();
     await User.insertMany(userData);
     
+    try { await Reviews.collection.dropIndexes(); } catch(e){}
     await Reviews.deleteMany();
     await Reviews.insertMany(reviewsData);
     
+    try { await Admin.collection.dropIndexes(); } catch(e){}
     await Admin.deleteMany();
     await Admin.insertMany(adminData);
 

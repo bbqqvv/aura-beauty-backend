@@ -11,7 +11,7 @@ const productsSchema = mongoose.Schema({
   img:{
     type: String,
     required: true,
-    validate: [validator.isURL, "Please provide valid url(s)"]
+    
   },
   title: {
     type: String,
@@ -45,7 +45,7 @@ const productsSchema = mongoose.Schema({
     img:{
       type: String,
       required: false,
-      validate: [validator.isURL, "Please provide valid url(s)"]
+      
     },
     sizes:[String]
   }],

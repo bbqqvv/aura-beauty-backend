@@ -5,8 +5,7 @@ const { ObjectId } = mongoose.Schema.Types;
 const brandSchema = mongoose.Schema({
   logo: {
     type: String,
-    required: false,
-    validate: [validator.isURL, "Please provide valid url(s)"]
+    required: false
   },
   name: {
     type: String,

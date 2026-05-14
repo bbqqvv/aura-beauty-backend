@@ -28,8 +28,9 @@ const addMultipleImageCloudinary = async (req, res) => {
     const uploadResults = [];
 
     for (const file of files) {
-      // Upload image to Cloudinary
-      const result = await cloudinaryServices.cloudinaryImageUpload(file.path);
+      // Upload image to MinIO (converted from Cloudinary)
+      const fileBuffer = fs.readFileSync(file.path);
+      const result = await cloudinaryServices.cloudinaryImageUpload(fileBuffer);
 
       // Store the Cloudinary response in the array
       uploadResults.push(result);
