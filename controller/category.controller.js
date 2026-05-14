@@ -69,9 +69,20 @@ exports.getProductTypeCategory = async (req,res,next) => {
   }
 }
 
+const Products = require("../model/Products");
+
 // delete category
 exports.deleteCategory = async (req,res,next) => {
   try {
+    // Check if category has products
+    const productsCount = await Products.countDocuments({ "category.id": req.params.id });
+    if (productsCount > 0) {
+      return res.status(400).json({
+        success: false,
+        message: `Cannot delete category. There are ${productsCount} products assigned to it.`
+      });
+    }
+
     const result = await categoryServices.deleteCategoryService(req.params.id);
     res.status(200).json({
       success:true,

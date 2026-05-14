@@ -22,10 +22,22 @@ exports.paymentIntent = async (req, res, next) => {
     next(error)
   }
 };
+const Products = require("../model/Products");
+
 // addOrder
 exports.addOrder = async (req, res, next) => {
   try {
     const orderItems = await Order.create(req.body);
+
+    // Update product quantities (deduct from stock)
+    if (req.body.cart && req.body.cart.length > 0) {
+      for (const item of req.body.cart) {
+        await Products.updateOne(
+          { _id: item._id },
+          { $inc: { quantity: -item.orderQuantity } }
+        );
+      }
+    }
 
     res.status(200).json({
       success: true,
@@ -64,18 +76,44 @@ exports.getSingleOrder = async (req, res, next) => {
   }
 };
 
-exports.updateOrderStatus = async (req, res) => {
+exports.updateOrderStatus = async (req, res, next) => {
   const newStatus = req.body.status;
   try {
+    const order = await Order.findById(req.params.id);
+    if (!order) {
+      return res.status(404).json({ success: false, message: 'Order not found' });
+    }
+
+    const oldStatus = order.status;
+    
+    // If transitioning to cancel, restore stock
+    if (newStatus === 'cancel' && oldStatus !== 'cancel') {
+      if (order.cart && order.cart.length > 0) {
+        for (const item of order.cart) {
+          await Products.updateOne(
+            { _id: item._id },
+            { $inc: { quantity: item.orderQuantity } }
+          );
+        }
+      }
+    } 
+    // If transitioning FROM cancel to something else, deduct stock again
+    else if (oldStatus === 'cancel' && newStatus !== 'cancel') {
+      if (order.cart && order.cart.length > 0) {
+        for (const item of order.cart) {
+          await Products.updateOne(
+            { _id: item._id },
+            { $inc: { quantity: -item.orderQuantity } }
+          );
+        }
+      }
+    }
+
     await Order.updateOne(
-      {
-        _id: req.params.id,
-      },
-      {
-        $set: {
-          status: newStatus,
-        },
-      }, { new: true })
+      { _id: req.params.id },
+      { $set: { status: newStatus } }
+    );
+
     res.status(200).json({
       success: true,
       message: 'Status updated successfully',

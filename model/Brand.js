@@ -15,6 +15,12 @@ const brandSchema = mongoose.Schema({
     maxLength: 100,
     unique: true,
   },
+  slug: {
+    type: String,
+    trim: true,
+    unique: true,
+    lowercase: true,
+  },
   description: String,
   email: {
     type: String,
