@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { addReview, deleteReviews} = require("../controller/review.controller");
+const { addReview, deleteReviews, deleteReview} = require("../controller/review.controller");
 
 // add a review
 router.post("/add", addReview);
-// delete reviews
+// delete reviews by product id
 router.delete("/delete/:id", deleteReviews);
+// delete a single review by review id
+router.delete("/:id", deleteReview);
 
 module.exports = router;

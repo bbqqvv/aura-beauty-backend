@@ -50,7 +50,7 @@ exports.addReview = async (req, res,next) => {
   }
 };
 
-// delete a review
+// delete a review (all for product)
 exports.deleteReviews = async (req, res,next) => {
   try {
     const productId = req.params.id;
@@ -62,5 +62,38 @@ exports.deleteReviews = async (req, res,next) => {
   } catch (error) {
     console.log(error);
     next(error)
+  }
+};
+
+// delete a single review
+exports.deleteReview = async (req, res, next) => {
+  try {
+    const reviewId = req.params.id;
+    const review = await Review.findById(reviewId);
+    
+    if (!review) {
+      return res.status(404).json({ error: 'Review not found' });
+    }
+
+    // Remove review from product
+    if (review.productId) {
+      await Products.findByIdAndUpdate(review.productId, {
+        $pull: { reviews: reviewId }
+      });
+    }
+
+    // Remove review from user
+    if (review.userId) {
+      await User.findByIdAndUpdate(review.userId, {
+        $pull: { reviews: reviewId }
+      });
+    }
+
+    await Review.findByIdAndDelete(reviewId);
+    
+    res.json({ message: 'Review deleted successfully' });
+  } catch (error) {
+    console.log(error);
+    next(error);
   }
 };

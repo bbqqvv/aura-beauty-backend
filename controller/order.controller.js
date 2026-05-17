@@ -60,17 +60,8 @@ exports.getOrders = async (req, res, next) => {
 
     let queryObject = {};
     if (searchTerm) {
-      queryObject = {
-        $or: [
-          { name: { $regex: searchTerm, $options: "i" } },
-          { email: { $regex: searchTerm, $options: "i" } },
-          { _id: mongoose.Types.ObjectId.isValid(searchTerm) ? searchTerm : undefined }
-        ].filter(condition => condition._id !== undefined || !condition._id)
-      };
-      
-      // Fix for ID search if valid
       if (mongoose.Types.ObjectId.isValid(searchTerm)) {
-        queryObject.$or = [{ _id: searchTerm }];
+        queryObject.$or = [{ _id: searchTerm }, { user: searchTerm }];
       } else {
         queryObject.$or = [
           { name: { $regex: searchTerm, $options: "i" } },

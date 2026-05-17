@@ -155,28 +155,36 @@ exports.updateProductService = async (id, currProduct) => {
   // console.log('currProduct',currProduct)
   const product = await Product.findById(id);
   if (product) {
-    product.title = currProduct.title;
-    product.brand.name = currProduct.brand.name;
-    product.brand.id = currProduct.brand.id;
-    product.category.name = currProduct.category.name;
-    product.category.id = currProduct.category.id;
-    product.sku = currProduct.sku;
-    product.img = currProduct.img;
-    product.slug = currProduct.slug;
-    product.unit = currProduct.unit;
-    product.imageURLs = currProduct.imageURLs;
-    product.tags = currProduct.tags;
-    product.parent = currProduct.parent;
-    product.children = currProduct.children;
-    product.price = currProduct.price;
-    product.discount = currProduct.discount;
-    product.quantity = currProduct.quantity;
-    product.status = currProduct.status;
-    product.productType = currProduct.productType;
-    product.description = currProduct.description;
-    product.additionalInformation = currProduct.additionalInformation;
-    product.offerDate.startDate = currProduct.offerDate.startDate;
-    product.offerDate.endDate = currProduct.offerDate.endDate;
+    if (currProduct.title) product.title = currProduct.title;
+    if (currProduct.brand) {
+      product.brand.name = currProduct.brand.name;
+      product.brand.id = currProduct.brand.id;
+    }
+    if (currProduct.category) {
+      product.category.name = currProduct.category.name;
+      product.category.id = currProduct.category.id;
+    }
+    if (currProduct.sku !== undefined) product.sku = currProduct.sku;
+    if (currProduct.img) product.img = currProduct.img;
+    if (currProduct.slug !== undefined) product.slug = currProduct.slug;
+    if (currProduct.unit) product.unit = currProduct.unit;
+    if (currProduct.imageURLs) product.imageURLs = currProduct.imageURLs;
+    if (currProduct.tags) product.tags = currProduct.tags;
+    if (currProduct.parent) product.parent = currProduct.parent;
+    if (currProduct.children) product.children = currProduct.children;
+    if (currProduct.price !== undefined) product.price = currProduct.price;
+    if (currProduct.discount !== undefined) product.discount = currProduct.discount;
+    if (currProduct.quantity !== undefined) product.quantity = currProduct.quantity;
+    if (currProduct.status) product.status = currProduct.status;
+    if (currProduct.productType) product.productType = currProduct.productType;
+    if (currProduct.description) product.description = currProduct.description;
+    if (currProduct.additionalInformation) product.additionalInformation = currProduct.additionalInformation;
+    
+    if (currProduct.offerDate) {
+      if (!product.offerDate) product.offerDate = {};
+      product.offerDate.startDate = currProduct.offerDate.startDate;
+      product.offerDate.endDate = currProduct.offerDate.endDate;
+    }
 
     await product.save();
   }
