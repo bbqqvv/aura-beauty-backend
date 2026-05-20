@@ -38,7 +38,7 @@ exports.addAllProductService = async (data) => {
 exports.getAllProductsService = async (query) => {
   const { page, limit, searchTerm } = query || {};
   const pages = Number(page) || 1;
-  const limits = Number(limit) || 20;
+  const limits = Number(limit) || 1000;
   const skip = (pages - 1) * limits;
 
   let queryObject = {};
