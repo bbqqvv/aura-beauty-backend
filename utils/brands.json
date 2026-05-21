@@ -1,14 +1,16 @@
 [
   {
-    " _id": "6412eae89c2275a25d09541d",
-    "products": ["641e887d05f9ee1717e1348a"],
-    "name": "Logitech",
-    "description": "Logitech Business Support. Top Articles. Top Articles. Find Your Product. Search for your product by name, model number or part number.",
-    "email": "logitech@gmail.com",
-    "website": "logitech.com",
+    "_id": "6412eae89c2275a25d09541d",
+    "products": [
+      "641e887d05f9ee1717e1348a"
+    ],
+    "name": "L'Oréal",
+    "description": "L'Oréal is a French personal care company and the world's largest cosmetics company, specializing in hair color, skin care, sun protection, make-up, perfume, and hair care.",
+    "email": "contact@loreal.com",
+    "website": "loreal.com",
     "location": "Apples, Switzerland",
     "status": "active",
-    "logo": "https://i.ibb.co/Ydf3C1H/brand-1.png"
+    "logo": "/assets/img/product/premium-cosmetic.png"
   },
   {
     "_id": "641522d9cd2724817c1c7c38",
@@ -20,24 +22,26 @@
       "642168b402240f90b1138e86",
       "64216b0902240f90b1138e8e"
     ],
-    "name": "Sony",
-    "description": "Sony Business Support. Top Articles. Top Articles. Find Your Product. Search for your product by name, model number or part number.",
-    "email": "sony@gmail.com",
-    "website": "sony.com",
+    "name": "MAC Cosmetics",
+    "description": "M·A·C Cosmetics is a world-leading brand of professional cosmetics, renowned for its unrivaled expertise in makeup artistry and celebrated diversity.",
+    "email": "contact@maccosmetics.com",
+    "website": "maccosmetics.com",
     "location": "Apples, America",
     "status": "active",
-    "logo": "https://i.ibb.co/GTzWqnP/brand-2.png"
+    "logo": "/assets/img/product/premium-cosmetic.png"
   },
   {
     "_id": "64153eb3707ca6a96638c13b",
-    "products": ["641e887d05f9ee1717e1349a"],
-    "name": "Samsung",
-    "description": "Samsung Business Support. Top Articles. Top Articles. Find Your Product. Search for your product by name, model number or part number.",
-    "email": "samsung@gmail.com",
-    "website": "samsung.com",
+    "products": [
+      "641e887d05f9ee1717e1349a"
+    ],
+    "name": "Estée Lauder",
+    "description": "Estée Lauder is a global leader in prestige beauty, offering high-performance skincare, makeup, and iconic fragrances.",
+    "email": "contact@esteelauder.com",
+    "website": "esteelauder.com",
     "location": "Samsung, US",
     "status": "active",
-    "logo": "https://i.ibb.co/YPzHpCD/brand-3.png"
+    "logo": "/assets/img/product/premium-cosmetic.png"
   },
   {
     "_id": "6415479cfba1a43da8287e20",
@@ -46,53 +50,61 @@
       "641d4106dbfab7b02ab28b22",
       "641e887d05f9ee1717e134b7"
     ],
-    "name": "Apple",
-    "description": "Apple Business Support. Top Articles. Top Articles. Find Your Product. Search for your product by name, model number or part number.",
-    "email": "apple@gmail.com",
-    "website": "apple.com",
+    "name": "Clinique",
+    "description": "Clinique is a clinical brand of skincare and cosmetics, allergy-tested and 100% fragrance-free, designed for maximum skin health.",
+    "email": "contact@clinique.com",
+    "website": "clinique.com",
     "location": "Apple, US",
     "status": "active",
-    "logo": "https://i.ibb.co/n3Wktzh/brand-4.png"
+    "logo": "/assets/img/product/premium-cosmetic.png"
   },
   {
     "_id": "64154ee693b3f0f2c7ec7ff8",
-    "products": ["641e887d05f9ee1717e134ad"],
-    "name": "Deepcool",
-    "description": "Deepcool Business Support. Top Articles. Top Articles. Find Your Product. Search for your product by name, model number or part number.",
-    "email": "deepcool@gmail.com",
-    "website": "deepcool.com",
+    "products": [
+      "641e887d05f9ee1717e134ad"
+    ],
+    "name": "Maybelline",
+    "description": "Maybelline New York is the world's number one cosmetics brand, bringing trendsetting makeup from the catwalk to the sidewalk.",
+    "email": "contact@maybelline.com",
+    "website": "maybelline.com",
     "location": "Deepcool, US",
     "status": "active",
-    "logo": "https://i.ibb.co/xqTCvsL/brand-5.png"
+    "logo": "/assets/img/product/premium-cosmetic.png"
   },
   {
     "_id": "6415545493b3f0f2c7ec7ffa",
-    "products": ["641e887d05f9ee1717e134b2", "6426ab33253d81bc860d5f86"],
-    "name": "Antec",
-    "description": "Antec Business Support. Top Articles. Top Articles. Find Your Product. Search for your product by name, model number or part number.",
-    "email": "antec@gmail.com",
-    "website": "antec.com",
+    "products": [
+      "641e887d05f9ee1717e134b2",
+      "6426ab33253d81bc860d5f86"
+    ],
+    "name": "NARS",
+    "description": "NARS Cosmetics is a French cosmetics and skin care company founded by makeup artist and photographer François Nars, celebrating individuality through high-fashion colors.",
+    "email": "contact@narscosmetics.com",
+    "website": "narscosmetics.com",
     "location": "Antec, US",
     "status": "active",
-    "logo": "https://i.ibb.co/SfBRy61/brand-6.png"
+    "logo": "/assets/img/product/premium-cosmetic.png"
   },
   {
     "_id": "6415796b0bb49c3eb913bd50",
-    "products": ["641e887d05f9ee1717e134cb", "641e887d05f9ee1717e134cf"],
-    "name": "Lenovo",
-    "description": "Lenovo Business Support. Top Articles. Top Articles. Find Your Product. Search for your product by name, model number or part number.",
-    "email": "lenovo@gmail.com",
-    "website": "lenovo.com",
+    "products": [
+      "641e887d05f9ee1717e134cb",
+      "641e887d05f9ee1717e134cf"
+    ],
+    "name": "Sephora",
+    "description": "Sephora is a French multinational retailer of personal care and beauty products, offering a unique retail environment for premium beauty discovery.",
+    "email": "contact@sephora.com",
+    "website": "sephora.com",
     "location": "lenovo, US",
     "status": "active",
-    "logo": "https://i.ibb.co/LNymxGk/brand-7.png"
+    "logo": "/assets/img/product/premium-cosmetic.png"
   },
   {
     "_id": "641feafc19436d47078261a3",
-    "name": "Legendary Whitetails",
-    "description": "Legendary Whitetails Business Support. Top Articles. Top Articles. Find Your Product. Search for your product by name, model number or part number.",
-    "email": "legendary-whitetails@gmail.com",
-    "website": "legendary-whitetails.com",
+    "name": "The Ordinary",
+    "description": "The Ordinary is an evolving collection of treatments offering familiar, effective clinical technologies positioned to raise pricing and communication integrity in skincare.",
+    "email": "contact@theordinary.com",
+    "website": "theordinary.com",
     "location": "Legendary Whitetails, US",
     "status": "active",
     "products": [
@@ -101,25 +113,28 @@
       "6421650a02240f90b1138e1e",
       "64228862253d81bc860d2092"
     ],
-    "logo": "https://i.ibb.co/mCqwRnT/brand-8.png"
+    "logo": "/assets/img/product/premium-cosmetic.png"
   },
   {
     "_id": "64200b8221162f8b15beae3c",
-    "name": "Nike",
-    "description": "Nike Business Support. Top Articles. Top Articles. Find Your Product. Search for your product by name, model number or part number.",
-    "email": "nike@gmail.com",
-    "website": "nike.com",
+    "name": "Fenty Beauty",
+    "description": "Fenty Beauty is a cosmetics brand launched by singer Rihanna, focusing on inclusivity across a wide range of traditionally hard-to-match skin tones.",
+    "email": "contact@fentybeauty.com",
+    "website": "fentybeauty.com",
     "location": "Nike, US",
     "status": "active",
-    "products": ["64216e2f02240f90b1138e96", "6421700802240f90b1138e9e"],
-    "logo": "https://i.ibb.co/GTzWqnP/brand-2.png"
+    "products": [
+      "64216e2f02240f90b1138e96",
+      "6421700802240f90b1138e9e"
+    ],
+    "logo": "/assets/img/product/premium-cosmetic.png"
   },
   {
     "_id": "642508be253d81bc860d4d24",
-    "name": "INIKA",
-    "description": "inika Business Support. Top Articles. Top Articles. Find Your Product. Search for your product by name, model number or part number.",
-    "email": "inika@gmail.com",
-    "website": "inika.com",
+    "name": "INIKA Organic",
+    "description": "INIKA Organic is an Australian pioneer in certified organic makeup and skincare, offering pure, healthy beauty without compromise.",
+    "email": "contact@inikaorganic.com",
+    "website": "inikaorganic.com",
     "location": "INIKA, US",
     "status": "active",
     "products": [
@@ -131,14 +146,14 @@
       "6426adba253d81bc860d6132",
       "6426b217253d81bc860d6217"
     ],
-    "logo": "https://i.ibb.co/n3Wktzh/brand-4.png"
+    "logo": "/assets/img/product/premium-cosmetic.png"
   },
   {
     "_id": "643134d4e2c1bd22cebb2130",
-    "name": "Louis Vuitton",
-    "description": "Louis Vuitton Business Support. Top Articles. Top Articles. Find Your Product. Search for your product by name, model number or part number.",
-    "email": "louisvuitton@gmail.com",
-    "website": "louisvuitton.com",
+    "name": "Dior Beauty",
+    "description": "Dior Beauty offers luxurious makeup, skincare, and prestigious fragrances, embodying French elegance and haute couture excellence.",
+    "email": "contact@dior.com",
+    "website": "dior.com",
     "location": "Louis Vuitton, US",
     "status": "active",
     "products": [
@@ -151,6 +166,6 @@
       "643249b49814bb139594c454",
       "64324f0c9814bb139594c47c"
     ],
-    "logo": "https://i.ibb.co/mCqwRnT/brand-8.png"
+    "logo": "/assets/img/product/premium-cosmetic.png"
   }
 ]
