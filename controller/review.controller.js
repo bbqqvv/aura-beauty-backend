@@ -122,3 +122,31 @@ exports.replyReview = async (req, res, next) => {
     next(error);
   }
 };
+
+// update a review by user within 24h
+exports.updateReview = async (req, res, next) => {
+  try {
+    const { rating, comment } = req.body;
+    const reviewId = req.params.id;
+    const review = await Review.findById(reviewId);
+    
+    if (!review) {
+      return res.status(404).json({ error: 'Review not found' });
+    }
+    
+    // Enforce 24-hour limit
+    const reviewAgeInHours = (new Date() - new Date(review.createdAt)) / (1000 * 60 * 60);
+    if (reviewAgeInHours >= 24) {
+      return res.status(400).json({ message: "Đã quá 24 giờ kể từ khi gửi đánh giá, bạn không thể chỉnh sửa!" });
+    }
+    
+    review.rating = rating;
+    review.comment = comment;
+    await review.save();
+    
+    res.json({ message: 'Đánh giá đã được cập nhật thành công!', review });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};

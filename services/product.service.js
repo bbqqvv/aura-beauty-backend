@@ -56,7 +56,10 @@ exports.getAllProductsService = async (query) => {
     .sort({ createdAt: -1 })
     .skip(skip)
     .limit(limits)
-    .populate("reviews");
+    .populate({
+      path: "reviews",
+      populate: { path: "userId", select: "name email imageURL" }
+    });
   
   const total = await Product.countDocuments(queryObject);
 

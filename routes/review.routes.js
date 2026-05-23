@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { addReview, deleteReviews, deleteReview, replyReview} = require("../controller/review.controller");
+const { addReview, deleteReviews, deleteReview, replyReview, updateReview} = require("../controller/review.controller");
 
 // add a review
 router.post("/add", addReview);
@@ -10,5 +10,7 @@ router.delete("/delete/:id", deleteReviews);
 router.delete("/:id", deleteReview);
 // reply to a review
 router.put("/reply/:id", replyReview);
+// update a review by user within 24h
+router.put("/update/:id", updateReview);
 
 module.exports = router;
