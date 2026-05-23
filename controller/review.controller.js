@@ -8,25 +8,28 @@ const User = require("../model/User");
 exports.addReview = async (req, res,next) => {
   const { userId, productId, rating, comment } = req.body;
   try {
-    // Check if the user has already left a review for this product
-    const existingReview = await Review.findOne({
-      user: userId,
-      product: productId,
+    // Count orders of the user containing this product
+    const orderCount = await Order.countDocuments({
+      user: new mongoose.Types.ObjectId(userId),
+      "cart._id": productId
     });
 
-    if (existingReview) {
+    if (orderCount === 0) {
       return res
         .status(400)
-        .json({ message: "You have already left a review for this product." });
+        .json({ message: "Bạn phải mua sản phẩm này mới có thể viết đánh giá!" });
     }
-    const checkPurchase = await Order.findOne({
-      user: new mongoose.Types.ObjectId(userId),
-      "cart._id": { $in: [productId] },
+
+    // Count reviews this user has submitted for this product
+    const reviewCount = await Review.countDocuments({
+      userId: new mongoose.Types.ObjectId(userId),
+      productId: new mongoose.Types.ObjectId(productId)
     });
-    if (!checkPurchase) {
+
+    if (reviewCount >= orderCount) {
       return res
         .status(400)
-        .json({ message: "Without purchase you can not give here review!" });
+        .json({ message: "Bạn đã đánh giá hết số lần mua của sản phẩm này. Hãy mua thêm để tiếp tục đánh giá!" });
     }
 
     // Create the new review
