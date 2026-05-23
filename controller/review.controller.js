@@ -97,3 +97,25 @@ exports.deleteReview = async (req, res, next) => {
     next(error);
   }
 };
+
+// reply to a review
+exports.replyReview = async (req, res, next) => {
+  try {
+    const { reply } = req.body;
+    const reviewId = req.params.id;
+    const review = await Review.findByIdAndUpdate(
+      reviewId,
+      { reply },
+      { new: true }
+    );
+    
+    if (!review) {
+      return res.status(404).json({ error: 'Review not found' });
+    }
+    
+    res.json({ message: 'Reply added successfully', review });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
