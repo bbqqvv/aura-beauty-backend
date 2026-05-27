@@ -18,6 +18,7 @@ const brandSchema = mongoose.Schema({
     type: String,
     trim: true,
     unique: true,
+    sparse: true,
     lowercase: true,
   },
   description: String,

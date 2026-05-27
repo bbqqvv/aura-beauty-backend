@@ -16,6 +16,7 @@ const CategorySchema = mongoose.Schema({
     type: String,
     trim: true,
     unique: true,
+    sparse: true,
    },
    children:[{type:String}],
    productType:{
